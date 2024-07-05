@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn2kr1jqa3615"]
+
+[ext_resource type="Theme" uid="uid://bremf6tlnms1l" path="res://assets/fonts/Font.tres" id="1_dgqul"]
+[ext_resource type="Script" path="res://scenes/EndGameMenu/EndGameMenu.gd" id="1_qwncf"]
+
+[node name="EndGameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qwncf")
+
+[node name="EndGamePanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 750.0
+
+[node name="Background" type="ColorRect" parent="EndGamePanel"]
+layout_mode = 2
+color = Color(0.278431, 0.807843, 0.905882, 0.784314)
+
+[node name="MenuItems" type="VBoxContainer" parent="EndGamePanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="WinningsLabel" type="Label" parent="EndGamePanel/MenuItems"]
+layout_mode = 2
+theme = ExtResource("1_dgqul")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 48
+text = "Winnings:"
+horizontal_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="EndGamePanel/MenuItems"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EndGamePanel/MenuItems"]
+layout_mode = 2
+alignment = 1
+
+[node name="WinningsValue" type="Label" parent="EndGamePanel/MenuItems/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_dgqul")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 80
+text = "0"
+
+[node name="CurrencySign" type="Label" parent="EndGamePanel/MenuItems/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_dgqul")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 40
+text = "€"
+horizontal_alignment = 1
+
+[node name="Margin2" type="MarginContainer" parent="EndGamePanel/MenuItems"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="PlayAgainButton" type="Button" parent="EndGamePanel/MenuItems"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("1_dgqul")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "PLAY AGAIN"
+
+[node name="Margin3" type="MarginContainer" parent="EndGamePanel/MenuItems"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="EndGamePanel/MenuItems"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("1_dgqul")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "MAIN MENU"
+
+[connection signal="pressed" from="EndGamePanel/MenuItems/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="EndGamePanel/MenuItems/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

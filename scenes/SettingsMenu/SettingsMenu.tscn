@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4iegdp84lrqu"]
+
+[ext_resource type="Script" path="res://scenes/SettingsMenu/SettingsMenu.gd" id="1_jca72"]
+[ext_resource type="Theme" uid="uid://bremf6tlnms1l" path="res://assets/fonts/Font.tres" id="1_lw4gs"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jca72")
+
+[node name="SettingsVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -21.5
+offset_right = 200.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MaxBallLabel" type="Label" parent="SettingsVBox"]
+layout_mode = 2
+theme = ExtResource("1_lw4gs")
+theme_override_font_sizes/font_size = 24
+text = "Maximum Ball Amount"
+
+[node name="Margin" type="MarginContainer" parent="SettingsVBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="NumberLabel" type="Label" parent="SettingsVBox"]
+layout_mode = 2
+theme = ExtResource("1_lw4gs")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="Margin2" type="MarginContainer" parent="SettingsVBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="MaxBallSlider" type="HSlider" parent="SettingsVBox"]
+layout_mode = 2
+min_value = 60.0
+max_value = 90.0
+value = 60.0
+
+[node name="Margin4" type="MarginContainer" parent="SettingsVBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MaxExtractionsLabel" type="Label" parent="SettingsVBox"]
+custom_minimum_size = Vector2(456, 24)
+layout_mode = 2
+theme = ExtResource("1_lw4gs")
+theme_override_font_sizes/font_size = 24
+text = "Maximum extractions amount"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Margin5" type="MarginContainer" parent="SettingsVBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="ExtractionsNumberLabel" type="Label" parent="SettingsVBox"]
+layout_mode = 2
+theme = ExtResource("1_lw4gs")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="Margin6" type="MarginContainer" parent="SettingsVBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="MaxExtractionsSlider" type="HSlider" parent="SettingsVBox"]
+layout_mode = 2
+min_value = 30.0
+max_value = 90.0
+value = 30.0
+
+[node name="Margin3" type="MarginContainer" parent="SettingsVBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="SaveExitButton" type="Button" parent="SettingsVBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme = ExtResource("1_lw4gs")
+theme_override_font_sizes/font_size = 24
+text = "SAVE & EXIT"
+
+[connection signal="value_changed" from="SettingsVBox/MaxBallSlider" to="." method="_on_max_ball_slider_value_changed"]
+[connection signal="value_changed" from="SettingsVBox/MaxExtractionsSlider" to="." method="_on_max_extractions_slider_value_changed"]
+[connection signal="pressed" from="SettingsVBox/SaveExitButton" to="." method="_on_save_exit_button_pressed"]

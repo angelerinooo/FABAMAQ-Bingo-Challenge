@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv8nt51nkkx0g"]
+
+[ext_resource type="Texture2D" uid="uid://brgna8800kbxy" path="res://assets/images/PanelTemplate.png" id="1_1wlvh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4e5ul"]
+texture = ExtResource("1_1wlvh")
+
+[node name="PanelTemplate" type="PanelContainer"]
+texture_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_4e5ul")

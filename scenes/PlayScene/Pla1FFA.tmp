@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://bd3nb2r5mlo24"]
+
+[ext_resource type="PackedScene" uid="uid://dv8nt51nkkx0g" path="res://scenes/PanelTemplate.tscn" id="1_w0dkr"]
+[ext_resource type="Script" path="res://scenes/PlayScene/PlayScene.gd" id="1_wkg0e"]
+[ext_resource type="Texture2D" uid="uid://btkhp1lq6vqgu" path="res://assets/images/Pause.png" id="2_52wwt"]
+[ext_resource type="Texture2D" uid="uid://c7f3mjcqtdnxq" path="res://assets/images/PausePressed.png" id="3_1b2xf"]
+[ext_resource type="Texture2D" uid="uid://wul11nv8pka1" path="res://assets/images/PauseHover.png" id="4_hmb2u"]
+[ext_resource type="PackedScene" uid="uid://dougjim7shp3r" path="res://scenes/NumbersChecklist/NumbersChecklist.tscn" id="7_pir8i"]
+[ext_resource type="PackedScene" uid="uid://dh0itqhp26x2s" path="res://scenes/PlayScene/PauseMenu.tscn" id="7_w67mt"]
+[ext_resource type="PackedScene" uid="uid://qct58a5rr8uu" path="res://scenes/PlayerCard/PlayerCard.tscn" id="8_hfv1f"]
+[ext_resource type="AudioStream" uid="uid://ln0yv22dpwux" path="res://assets/audio/got_number.wav" id="9_jjr58"]
+[ext_resource type="AudioStream" uid="uid://p0bvgyrl44yd" path="res://assets/audio/no_number.wav" id="10_mu1ev"]
+
+[node name="PlayScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_wkg0e")
+
+[node name="PanelTemplate" parent="." instance=ExtResource("1_w0dkr")]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 20.0
+offset_right = 1050.0
+offset_bottom = 95.0
+
+[node name="BallWrapper" type="Node2D" parent="."]
+position = Vector2(200, 58)
+
+[node name="KillBallWrapper" type="Node2D" parent="."]
+position = Vector2(200, 58)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PauseButton" type="TextureButton" parent="UI"]
+texture_filter = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 95.0
+offset_bottom = 95.0
+texture_normal = ExtResource("2_52wwt")
+texture_pressed = ExtResource("3_1b2xf")
+texture_hover = ExtResource("4_hmb2u")
+
+[node name="NumbersChecklist" parent="UI" instance=ExtResource("7_pir8i")]
+
+[node name="PlayerCard" parent="UI" instance=ExtResource("8_hfv1f")]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("7_w67mt")]
+visible = false
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="GotNumber" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("9_jjr58")
+
+[node name="NoNumber" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("10_mu1ev")
+
+[node name="ExtractionTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="pressed" from="UI/PauseButton" to="UI/PauseMenu" method="_on_pause_button_pressed"]
+[connection signal="timeout" from="ExtractionTimer" to="." method="_on_extraction_timer_timeout"]

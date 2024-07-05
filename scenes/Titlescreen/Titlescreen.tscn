@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://btmndk36j3btc"]
+
+[ext_resource type="Script" path="res://scenes/Titlescreen/Titlescreen.gd" id="1_1b507"]
+[ext_resource type="Texture2D" uid="uid://b5cc5lvf44q1h" path="res://assets/images/noun-bingo-cage-1454011.png" id="2_emshn"]
+[ext_resource type="Theme" uid="uid://bremf6tlnms1l" path="res://assets/fonts/Font.tres" id="3_5qtxe"]
+
+[node name="Titlescreen" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_1b507")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="MenuVerticalContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="LogoContainer" type="HBoxContainer" parent="CenterContainer/MenuVerticalContainer"]
+layout_mode = 2
+
+[node name="LogoImage" type="TextureRect" parent="CenterContainer/MenuVerticalContainer/LogoContainer"]
+layout_mode = 2
+texture = ExtResource("2_emshn")
+
+[node name="LogoLabel" type="Label" parent="CenterContainer/MenuVerticalContainer/LogoContainer"]
+layout_mode = 2
+theme = ExtResource("3_5qtxe")
+theme_override_font_sizes/font_size = 48
+text = "bingo!"
+uppercase = true
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MenuVerticalContainer"]
+layout_mode = 2
+theme = ExtResource("3_5qtxe")
+theme_override_font_sizes/font_size = 26
+text = "PLAY"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/MenuVerticalContainer"]
+layout_mode = 2
+theme = ExtResource("3_5qtxe")
+theme_override_font_sizes/font_size = 26
+text = "GAME SETTINGS"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/MenuVerticalContainer"]
+layout_mode = 2
+theme = ExtResource("3_5qtxe")
+theme_override_font_sizes/font_size = 26
+text = "EXIT"
+
+[node name="Credits" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("3_5qtxe")
+theme_override_font_sizes/font_size = 10
+text = "Mabe by Renato Santos 
+for FABAMAQ challenge"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[connection signal="pressed" from="CenterContainer/MenuVerticalContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuVerticalContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuVerticalContainer/ExitButton" to="." method="_on_exit_button_pressed"]

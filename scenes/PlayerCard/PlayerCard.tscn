@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://qct58a5rr8uu"]
+
+[ext_resource type="Script" path="res://scenes/PlayerCard/PlayerCard.gd" id="1_86we1"]
+[ext_resource type="PackedScene" uid="uid://dv8nt51nkkx0g" path="res://scenes/PanelTemplate.tscn" id="2_ihlp5"]
+[ext_resource type="Theme" uid="uid://bremf6tlnms1l" path="res://assets/fonts/Font.tres" id="3_pp8wh"]
+
+[node name="PlayerCard" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -125.0
+offset_right = -180.0
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_86we1")
+
+[node name="PanelTemplate" parent="." instance=ExtResource("2_ihlp5")]
+custom_minimum_size = Vector2(350, 120)
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 120.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelTemplate"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="PanelTemplate/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="CardTitle" type="Label" parent="PanelTemplate/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_pp8wh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.278431, 0.807843, 0.905882, 1)
+theme_override_font_sizes/font_size = 16
+text = "your numbers"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="CardGrid" type="GridContainer" parent="PanelTemplate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+
+[node name="Margin2" type="MarginContainer" parent="PanelTemplate/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2

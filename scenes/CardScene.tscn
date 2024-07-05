@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi8utya4pwyoh"]
+
+[ext_resource type="Texture2D" uid="uid://ctg1kex0vvqvb" path="res://assets/images/NumberBorder.png" id="1_chehs"]
+[ext_resource type="Theme" uid="uid://bremf6tlnms1l" path="res://assets/fonts/Font.tres" id="1_u0tiv"]
+[ext_resource type="Texture2D" uid="uid://ctr8yuqtmadxg" path="res://assets/images/Highlighter.png" id="3_ua4in"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_efe0k"]
+
+[node name="CardScene" type="PanelContainer" groups=["card"]]
+custom_minimum_size = Vector2(40, 28)
+offset_right = 40.0
+offset_bottom = 28.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_efe0k")
+
+[node name="NumberBorder" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 28)
+layout_mode = 2
+texture = ExtResource("1_chehs")
+
+[node name="Number" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_u0tiv")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highligther" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 0.694118, 0, 0.807843)
+layout_mode = 2
+texture = ExtResource("3_ua4in")
+
+[connection signal="visibility_changed" from="Highligther" to="." method="_on_highligther_visibility_changed"]

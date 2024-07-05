@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://pxkqtdqpnoa7"]
+
+[ext_resource type="Script" path="res://scenes/Ball/Ball.gd" id="1_dim3s"]
+[ext_resource type="Texture2D" uid="uid://caeeas5o821sj" path="res://assets/images/Ball.png" id="1_jes2l"]
+[ext_resource type="Theme" uid="uid://bremf6tlnms1l" path="res://assets/fonts/Font.tres" id="2_du3h7"]
+
+[node name="Ball" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_dim3s")
+
+[node name="BallSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_jes2l")
+
+[node name="Number" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 17.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_du3h7")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
