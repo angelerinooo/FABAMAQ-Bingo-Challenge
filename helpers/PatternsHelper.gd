@@ -21,7 +21,7 @@ const ARROW_PATTERNS = [
 ]
 # Plus pattern template
 const PLUS_PATTERN = [
-	[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [0, 2], [2, 2]
+	[[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [0, 2], [2, 2]]
 ]
 
 # All patterns duplicate for handling
@@ -45,15 +45,19 @@ func reset():
 
 func check_all_patterns(player_card: Array):
 	if horizontal_patterns.size() > 0:
+		pattern_index = 0
+		remove_on_index.clear()
 		for pattern in horizontal_patterns:
 			if check_pattern(pattern, player_card):
 				remove_on_index.append(pattern_index)
 			pattern_index += 1
-		
+			
 		if remove_on_index.size() > 0:
 			remove_pattern_on_index(remove_on_index, horizontal_patterns, 1.5)
 	
 	if vertical_patterns.size() > 0:
+		pattern_index = 0
+		remove_on_index.clear()
 		for pattern in vertical_patterns:
 			if check_pattern(pattern, player_card):
 				remove_on_index.append(pattern_index)
@@ -63,6 +67,8 @@ func check_all_patterns(player_card: Array):
 			remove_pattern_on_index(remove_on_index, vertical_patterns, 1.25)
 	
 	if arrow_patterns.size() > 0:
+		pattern_index = 0
+		remove_on_index.clear()
 		for pattern in arrow_patterns:
 			if check_pattern(pattern, player_card):
 				remove_on_index.append(pattern_index)
@@ -71,7 +77,7 @@ func check_all_patterns(player_card: Array):
 		if remove_on_index.size() > 0:
 			remove_pattern_on_index(remove_on_index, arrow_patterns, 2.5)
 	
-	if plus_pattern.size() > 0 and check_pattern(plus_pattern, player_card):
+	if plus_pattern.size() > 0 and check_pattern(plus_pattern[0], player_card):
 		AutoloadHelper.WINNINGS = AutoloadHelper.WINNINGS + (AutoloadHelper.BET_AMOUNT * 3)
 		plus_pattern.remove_at(0)
 
@@ -88,9 +94,8 @@ func check_pattern(pattern: Array, player_card: Array) -> bool:
 	return true
 
 func remove_pattern_on_index(indexes: Array, patterns: Array, multiplier: float):
-	for i in range(indexes.size()):
+	indexes.sort()
+	indexes.reverse()
+	for i in indexes:
 		AutoloadHelper.WINNINGS = AutoloadHelper.WINNINGS + (AutoloadHelper.BET_AMOUNT * multiplier)
-		patterns.remove_at(indexes[i])
-	
-	pattern_index = 0
-	remove_on_index.clear()
+		patterns.remove_at(i)
