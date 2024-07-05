@@ -44,31 +44,34 @@ func reset():
 	plus_pattern = PLUS_PATTERN.duplicate()
 
 func check_all_patterns(player_card: Array):
-	for pattern in horizontal_patterns:
-		if check_pattern(pattern, player_card):
-			remove_on_index.append(pattern_index)
-		pattern_index += 1
+	if horizontal_patterns.size() > 0:
+		for pattern in horizontal_patterns:
+			if check_pattern(pattern, player_card):
+				remove_on_index.append(pattern_index)
+			pattern_index += 1
+		
+		if remove_on_index.size() > 0:
+			remove_pattern_on_index(remove_on_index, horizontal_patterns, 1.5)
 	
-	if remove_on_index.size() > 0:
-		remove_pattern_on_index(remove_on_index, horizontal_patterns, 1.5)
+	if vertical_patterns.size() > 0:
+		for pattern in vertical_patterns:
+			if check_pattern(pattern, player_card):
+				remove_on_index.append(pattern_index)
+			pattern_index += 1
+		
+		if plus_pattern.size() > 0 and remove_on_index.size() > 0:
+			remove_pattern_on_index(remove_on_index, vertical_patterns, 1.25)
 	
-	for pattern in vertical_patterns:
-		if check_pattern(pattern, player_card):
-			remove_on_index.append(pattern_index)
-		pattern_index += 1
+	if arrow_patterns.size() > 0:
+		for pattern in arrow_patterns:
+			if check_pattern(pattern, player_card):
+				remove_on_index.append(pattern_index)
+			pattern_index += 1
+		
+		if remove_on_index.size() > 0:
+			remove_pattern_on_index(remove_on_index, arrow_patterns, 2.5)
 	
-	if remove_on_index.size() > 0:
-		remove_pattern_on_index(remove_on_index, vertical_patterns, 1.25)
-	
-	for pattern in arrow_patterns:
-		if check_pattern(pattern, player_card):
-			remove_on_index.append(pattern_index)
-		pattern_index += 1
-	
-	if remove_on_index.size() > 0:
-		remove_pattern_on_index(remove_on_index, arrow_patterns, 2.5)
-	
-	if check_pattern(plus_pattern, player_card):
+	if plus_pattern.size() > 0 and check_pattern(plus_pattern, player_card):
 		AutoloadHelper.WINNINGS = AutoloadHelper.WINNINGS + (AutoloadHelper.BET_AMOUNT * 3)
 		plus_pattern.remove_at(0)
 
@@ -79,7 +82,6 @@ func check_pattern(pattern: Array, player_card: Array) -> bool:
 		var col = pos[1]
 		row = player_card[row]
 		var highlighter: TextureRect = row[col].get_child(2)
-		var number = row[col].get_child(1).text
 		if not highlighter.is_visible():
 			return false
 			

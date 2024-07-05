@@ -89,7 +89,10 @@ func check_has_number(number: int, grid_dimensions: Vector2, array: Array) -> bo
 	var result = false
 	for i in range(grid_dimensions.x):
 		for j in range(grid_dimensions.y):
-			var card: PanelContainer = array[i][j]
+			var row: Array = array[i]
+			if j >= row.size():
+				break
+			var card = row[j]
 			if card.get_child(1).text == str(number):
 				result = true
 				mark_number(number, card)
